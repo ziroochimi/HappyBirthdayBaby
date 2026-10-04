@@ -257,7 +257,7 @@
 
     #reader-image {
       display: block;
-      width: auto;
+      width: 100%;
       max-width: 100%;
       height: auto;
       flex: 0 0 auto;
@@ -328,9 +328,9 @@
         padding-inline: 0;
       }
 
-      #reader-image {
-        width: 115vw;
-        max-width: none;
+      .book-image {
+        width: 100%;
+        max-width: 100%;
       }
 
       .reader-controls {
@@ -421,6 +421,8 @@
 </head>
 
 <body>
+  <audio id="birthday-audio" src="Acid-Tunnel-Of-Love-Extended.mp3" preload="auto" hidden></audio>
+
   <section id="loader" class="screen" aria-live="polite">
     <div class="loading-wrap">
       <h1 class="loading-title">Loading...</h1>
@@ -431,12 +433,12 @@
   <main id="content" aria-hidden="true">
     <section class="content-inner" aria-label="Introduction">
       <div class="intro-copy">
-        <p class="test-text">First of all, Happy birthday my love, I love you so much and i hope you have a great day.
-I hope you know im always here no matter what you go through, life gets rough but ill always be here to make it a bit softer.
-Now i´ll show you the book that in translated for you</p>
+        <p class="test-text">First of all, Happy birthday my love, I love you so much and I hope you have a great day.
+I hope you know I'm always here no matter what you go through, life gets rough but I'll always be here to make it a bit softer.
+Now I'll show you the book that in translated for you</p>
       </div>
 
-      <button id="lets-go" class="yeezy-button" type="button" aria-label="Start the book">Let´s go!</button>
+      <button id="lets-go" class="yeezy-button" type="button" aria-label="Start the book">Let's go!</button>
     </section>
 
     <section id="book" aria-label="Translated book">
@@ -448,22 +450,22 @@ Now i´ll show you the book that in translated for you</p>
     </section>
 
     <section id="next-page" aria-label="Next page">
-      <p class="placeholder-text">I know you may be kind of confused, if you didn´t know, this book talks about depression. The dog isn´t a dog, it´s her depression.
-I decided to make this for you as your birthday gift because when i read this book i thought of you.
-I want you to know that no matter how weak you feel, im always here to push you a little further, no matter what addiction you have, "the dog" will stop barking.
+      <p class="placeholder-text">I know you may be kind of confused, if you didn't know, this book talks about depression. The dog isn't a dog, it's her depression.
+I decided to make this for you as your birthday gift because when I read this book I thought of you.
+I want you to know that no matter how weak you feel, I'm always here to push you a little further, no matter what addiction you have, "the dog" will stop barking.
 
-Remember im always here at your highests and lowests, your bests and your worsts, ill aalways be there.
-Its never over, its never late. I know youre a strong woman and i know you can overcome any obstacle life has in store.
+Remember I'm always here at your highests and lowests, your bests and your worsts, I'll always be there.
+It's never over, it's never late. I know you're a strong woman and I know you can overcome any obstacle life has in store.
 
-With enough time, all this sadness will turn into happiness, all mistakes will be lessons. Im sso proud of you because even at your lowest you still pulled through, it shows
+With enough time, all this sadness will turn into happiness, all mistakes will be lessons. I'm so proud of you because even at your lowest you still pulled through, it shows
 you still have some desire to live.
 
-You alwayss been my shoulder to cry on, my supportive partner and my precious wife.
+You always been my shoulder to cry on, my supportive partner and my precious wife.
 
-Dont cry anymore, your tears of sadness will become tears of joy. Time is progression, dont get stuck in the past or you will never progress.
+Don't cry anymore, your tears of sadness will become tears of joy. Time is progression, don't get stuck in the past or you will never progress.
 
-This letter is an apology for everything i did to you and its also an apology for everything you did to me, at the same time, this is also an "i forgive you" for the both of us.
-This way, we dont have to worry about the past anymore and we will only have to focus on the present.
+This letter is an apology for everything I did to you and it's also an apology for everything you did to me, at the same time, this is also an "I forgive you" for the both of us.
+This way, we don't have to worry about the past anymore and we will only have to focus on the present.
 
 Made with much love, Ciro Chmielewsky. 06/10/2026, 01/01/2026 - Forever.</p>
     </section>
@@ -488,6 +490,7 @@ Made with much love, Ciro Chmielewsky. 06/10/2026, 01/01/2026 - Forever.</p>
     const readerControls = document.getElementById("reader-controls");
     const readerPrev = document.getElementById("reader-prev");
     const readerNext = document.getElementById("reader-next");
+    const birthdayAudio = document.getElementById("birthday-audio");
 
     const assets = [
       "title.png",
@@ -657,6 +660,9 @@ Made with much love, Ciro Chmielewsky. 06/10/2026, 01/01/2026 - Forever.</p>
         updateReaderPage(readerIndex + 1);
         return;
       }
+
+      birthdayAudio.currentTime = 0;
+      birthdayAudio.play().catch(() => {});
 
       exitReader().then(() => {
         document.getElementById("next-page").scrollIntoView({ behavior: "smooth" });
